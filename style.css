@@ -1,0 +1,507 @@
+:root {
+    --primary-color: #c5a059;
+    --gold-light: #f4d35e;
+    --gold-dark: #b8860b;
+    --text-color: #2c1810;
+    --bg-color: #fdfaf5;
+    --glass-bg: rgba(255, 255, 255, 0.4);
+    --glass-border: rgba(197, 160, 89, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    line-height: 1.6;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(197, 160, 89, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(244, 211, 94, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(141, 110, 99, 0.1) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.8) 0px, transparent 50%);
+    background-attachment: fixed;
+}
+
+/* Modern Glass Container */
+.glass-section {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 40px;
+    padding: 4rem 2.5rem;
+    margin: 4rem auto;
+    max-width: 1000px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.glass-section:hover {
+    transform: translateY(-5px);
+}
+
+/* Modern Split Hero */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding: 10vh 5vw 5vh;
+}
+
+.hero-top {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.hero-info {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.burmese-intro {
+    font-family: 'Padauk', 'Noto Sans Myanmar', sans-serif;
+    font-size: 1.6rem;
+    line-height: 2;
+    color: var(--primary-color);
+    margin: 1.5rem 0;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+/* Floating Collage */
+.hero-collage {
+    position: relative;
+    height: 600px;
+    width: 100%;
+}
+
+.collage-item {
+    position: absolute;
+    border: 8px solid white;
+    box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+.collage-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.c1 {
+    width: 300px;
+    height: 380px;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    animation: floatingHero 6s ease-in-out infinite;
+}
+
+.c2 {
+    width: 220px;
+    height: 220px;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    top: 10%; right: 5%;
+    z-index: 2;
+    animation: floatingHero 7s ease-in-out infinite reverse;
+}
+
+.c3 {
+    width: 180px;
+    height: 180px;
+    border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+    bottom: 5%; left: 5%;
+    z-index: 1;
+    animation: floatingHero 5s ease-in-out infinite;
+}
+
+.hero-collage:hover .collage-item {
+    transform: scale(1.05);
+}
+
+.romantic-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    background: linear-gradient(to right, var(--gold-dark), var(--primary-color), var(--gold-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--primary-color);
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+.stars-sparkle {
+    font-size: 1.5rem;
+    display: flex;
+    gap: 15px;
+    color: var(--primary-color);
+    animation: sparkle 2s infinite ease-in-out;
+}
+
+@media (max-width: 768px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-collage {
+        height: 400px;
+    }
+}
+
+.romantic-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 700;
+    background: linear-gradient(to right, var(--gold-dark), var(--primary-color), var(--gold-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+    letter-spacing: -2px;
+}
+
+.subtitle {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+}
+
+.couple-names {
+    font-family: 'Padauk', 'Noto Sans Myanmar', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+}
+
+.heart-split {
+    display: inline-block;
+    animation: heartPulse 1.5s infinite ease-in-out;
+    margin: 0 10px;
+}
+
+.stars-sparkle {
+    font-size: 1.5rem;
+    display: flex;
+    gap: 15px;
+    color: var(--primary-color);
+}
+
+/* Minimalist Timer */
+.timer-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.timer-item {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    width: 140px;
+    height: 140px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    border: 1px solid white;
+}
+
+.timer-item .number {
+    font-size: 3.5rem;
+    font-weight: 200;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.timer-item .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 5px;
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+/* Artistic Organic Gallery */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 4rem;
+    padding: 2rem;
+}
+
+.gallery-card {
+    position: relative;
+    height: 480px;
+    background: transparent;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 85%;
+    object-fit: cover;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; /* Organic Blob Shape */
+    box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.05);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.gallery-card:nth-child(even) img {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+.gallery-card:hover img {
+    border-radius: 40% 60% 50% 50% / 50% 50% 60% 40%;
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 30px 30px 80px rgba(197, 160, 89, 0.2);
+}
+
+.card-content {
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    text-align: center;
+}
+
+.gallery-card:hover .card-content {
+    transform: translateY(0);
+}
+
+.card-title {
+    font-family: 'Padauk', 'Noto Sans Myanmar', serif;
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.card-desc {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.5;
+}
+
+/* Section Decoration */
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    text-align: center;
+    margin-bottom: 3.5rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--primary-color);
+    margin: 15px auto 0;
+    border-radius: 10px;
+}
+
+/* Romantic Letter */
+.romantic-letter {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    line-height: 2.2;
+    text-align: center;
+    font-family: 'Padauk', 'Noto Sans Myanmar', serif;
+}
+
+.romantic-letter p {
+    margin-bottom: 1.8rem;
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+/* Music Player UI */
+.music-player {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 100;
+}
+
+#music-toggle {
+    background: white;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#music-toggle:hover {
+    transform: scale(1.1) rotate(15deg);
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Particles */
+#heart-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    opacity: 0.6;
+    animation: float 5s linear infinite;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 5rem 0;
+    opacity: 0.5;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* Animations */
+
+@keyframes floatingHero {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Responsive Optimization */
+@media (max-width: 992px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+    
+    .hero-info {
+        align-items: center;
+        text-align: center;
+    }
+    
+    .hero-collage {
+        height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .romantic-title { font-size: 3.5rem; }
+    .burmese-intro { font-size: 1.3rem; line-height: 2; }
+    .subtitle { font-size: 1.6rem; }
+    .couple-names { font-size: 1.3rem; letter-spacing: 2px; }
+    
+    .glass-section {
+        padding: 2.5rem 1.5rem;
+        margin: 2rem 1rem;
+        border-radius: 30px;
+    }
+
+    .timer-item {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .timer-item .number { font-size: 2.5rem; }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .gallery-card {
+        height: 400px;
+    }
+
+    .c1 { width: 220px; height: 280px; }
+    .c2 { width: 150px; height: 150px; }
+    .c3 { width: 130px; height: 130px; }
+}
+
+@media (max-width: 480px) {
+    .romantic-title { font-size: 2.8rem; }
+    .timer-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+    
+    .timer-item {
+        width: 100%;
+        height: 110px;
+    }
+    
+    .music-player {
+        top: 1rem;
+        right: 1rem;
+    }
+    
+    #music-toggle {
+        width: 50px;
+        height: 50px;
+    }
+}
