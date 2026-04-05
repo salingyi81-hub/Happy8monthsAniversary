@@ -103,3 +103,21 @@ document.querySelectorAll('.glass-section').forEach(section => {
     section.style.transition = "all 0.8s ease-out";
     observer.observe(section);
 });
+
+// Envelope logic
+const envelope = document.querySelector('.envelope-wrapper');
+if (envelope) {
+    envelope.addEventListener('click', () => {
+        envelope.classList.toggle('open');
+        if (envelope.classList.contains('open')) {
+            const paper = envelope.querySelector('.envelope-paper');
+            // Ensure we start at the top of the letter
+            setTimeout(() => {
+                paper.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }, 100);
+        }
+    });
+}
