@@ -58,7 +58,6 @@ setInterval(createSparkle, 400);
 // YouTube IFrame API Integration
 let player;
 const videoId = 'GwZvIy1u4RM'; // 'မင်းလေးရှိရင်'
-const musicBtn = document.getElementById('music-toggle');
 let isPlaying = false;
 
 // Load YouTube API Script
@@ -69,46 +68,19 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('youtube-player', {
-        height: '0',
-        width: '0',
+        height: '360',
+        width: '100%',
         videoId: videoId,
         playerVars: {
             'autoplay': 0,
-            'controls': 0,
+            'controls': 1,
             'loop': 1,
             'playlist': videoId
-        },
-        events: {
-            'onStateChange': onPlayerStateChange
         }
     });
 }
 
-function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.PLAYING) {
-        isPlaying = true;
-        updateMusicIcon('pause');
-    } else {
-        isPlaying = false;
-        updateMusicIcon('music');
-    }
-}
 
-function updateMusicIcon(iconName) {
-    const icon = musicBtn.querySelector('i');
-    icon.setAttribute('data-lucide', iconName);
-    lucide.createIcons();
-}
-
-musicBtn.addEventListener('click', () => {
-    if (!player) return;
-    
-    if (isPlaying) {
-        player.pauseVideo();
-    } else {
-        player.playVideo();
-    }
-});
 
 // Scroll Reveal Observer
 const observerOptions = {

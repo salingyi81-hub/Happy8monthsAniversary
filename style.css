@@ -346,22 +346,161 @@ body {
 
 /* Romantic Letter */
 .romantic-letter {
-    max-width: 700px;
+    max-width: 800px;
     margin: 0 auto;
-    font-size: 1.5rem;
-    line-height: 2.2;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 500px;
+    perspective: 1000px;
+}
+
+.envelope-wrapper {
+    position: relative;
+    width: 380px;
+    max-width: 90vw;
+    height: 240px;
+    background: linear-gradient(135deg, #d4af37, #b8860b);
+    border-radius: 0 0 15px 15px;
+    cursor: pointer;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    margin: 120px auto 40px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.envelope-wrapper:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(184, 134, 11, 0.2);
+}
+
+/* The Flap */
+.envelope-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    z-index: 4;
+    border-top: 140px solid #c5a059;
+    border-left: calc(min(380px, 90vw) / 2) solid transparent;
+    border-right: calc(min(380px, 90vw) / 2) solid transparent;
+    transform-origin: top;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+}
+
+/* Front Pocket Shape (The Sides) */
+.envelope-wrapper::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(30deg, #d4af37 0%, rgba(212, 175, 55, 0.8) 50%, #b8860b 100%);
+    clip-path: polygon(0% 0%, 50% 50%, 100% 0%, 100% 100%, 0% 100%);
+    z-index: 3;
+    border-radius: 0 0 15px 15px;
+}
+
+.envelope-wrapper.open::before {
+    transform: rotateX(180deg);
+    z-index: 1;
+    border-top-color: #b8860b;
+}
+
+.envelope-paper {
+    position: absolute;
+    background: #fffafa;
+    background-image: repeating-linear-gradient(#fffafa, #fffafa 30px, #f0f0f0 31px);
+    width: 92%;
+    height: 85%;
+    top: 5%;
+    left: 4%;
+    padding: 40px 30px;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
     font-family: 'Padauk', 'Noto Sans Myanmar', serif;
+    color: var(--text-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0) scale(0.9);
 }
 
-.romantic-letter p {
-    margin-bottom: 1.8rem;
+.envelope-wrapper.open .envelope-paper {
+    transform: translateY(-220px) scale(1.1);
+    height: auto;
+    max-height: 550px;
+    width: 100%;
+    left: 0;
+    z-index: 5;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    border-radius: 12px;
+    background-image: none;
+    background-color: white;
+    opacity: 1;
+    visibility: visible;
+    overflow-y: auto;
+    padding-right: 15px; /* Space for scrollbar */
 }
 
-.signature {
+/* Custom Scrollbar for Letter */
+.envelope-paper::-webkit-scrollbar {
+    width: 5px;
+}
+.envelope-paper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+.envelope-paper::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+.heart-seal {
+    position: absolute;
+    top: 110px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 6;
+    background: #e74c3c;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4), inset 0 0 10px rgba(0,0,0,0.2);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.envelope-wrapper.open .heart-seal {
+    transform: translateX(-50%) translateY(120px) scale(0);
+    opacity: 0;
+}
+
+.letter-content {
+    font-size: 1.2rem;
+    line-height: 2;
+}
+
+.letter-content p {
+    margin-bottom: 1.2rem;
+}
+
+.letter-signature {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
-    color: var(--primary-color);
+    font-size: 2.2rem;
+    color: var(--gold-dark);
+    margin-top: 2rem;
+    border-top: 1px dashed var(--gold-light);
+    padding-top: 1.5rem;
 }
 
 /* Music Player UI */
